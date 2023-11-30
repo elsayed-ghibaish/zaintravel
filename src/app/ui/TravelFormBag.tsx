@@ -130,7 +130,7 @@ export default function TravelFormBag() {
   const sendTelegramMessage = async (data: any) => {
     try {
       const token = "6783301682:AAFOfp15Yklus6GUyrOBEnJbrI0JYIsNEaQ";
-      const chatId = "828863215";
+      const chatId = "-1001953556022";
 
       const message = `طلب حجز شنطة جديد
           الاسم: ${FullName}
@@ -175,7 +175,7 @@ export default function TravelFormBag() {
         id="form"
         action=""
         method="POST"
-        className="mx-auto mt-16 max-w-xl sm:mt-20"
+        className="mx-auto mt-16 max-w-xl sm:mt-20 p-5"
         onSubmit={handleSubmit}
       >
         <div className="block ">

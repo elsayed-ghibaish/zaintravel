@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function ContactUs() {
   return (
     <>
-      <div className="mx-auto container bg-gray-900 text-gray-900 lg:w-3/5 rounded-md mt-10 p-10 h-[70vh]">
+      <div className="mx-auto container bg-gray-900 text-gray-900 lg:w-3/5 rounded-md mt-10 p-10">
         <div className="">
           <div
             className="mx-auto mb-4 mt-5 lg:w-2/5 sm:w-auto rounded-lg bg-purple-100 shadow px-6 py-5 text-base text-success-700"

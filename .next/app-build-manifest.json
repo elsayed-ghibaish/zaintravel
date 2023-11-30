@@ -6,70 +6,15 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
-    "/pages/test/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pages/test/page.js"
-    ],
-    "/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
-    ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
-    ],
-    "/pages/register/travel/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pages/register/travel/page.js"
-    ],
     "/pages/register/travel-bag/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/pages/register/travel-bag/page.js"
     ],
-    "/dashboard/booking-print/page": [
+    "/pages/contact-us/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/booking-print/page.js"
-    ],
-    "/dashboard/accent-booking/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/accent-booking/page.js"
-    ],
-    "/dashboard/accent-bag/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/accent-bag/page.js"
-    ],
-    "/dashboard/editBooking/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/editBooking/[id]/page.js"
-    ],
-    "/dashboard/bag-print/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/bag-print/page.js"
-    ],
-    "/dashboard/editbag/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/editbag/[id]/page.js"
-    ],
-    "/dashboard/booking-print-mob/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/booking-print-mob/page.js"
+      "static/chunks/app/pages/contact-us/page.js"
     ],
     "/pages/booking-conditions/page": [
       "static/chunks/webpack.js",
@@ -81,15 +26,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/pages/complaint/page.js"
     ],
-    "/pages/contact-us/page": [
+    "/pages/register/travel/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/pages/contact-us/page.js"
-    ],
-    "/dashboard/bag-print-mob/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/bag-print-mob/page.js"
+      "static/chunks/app/pages/register/travel/page.js"
     ]
   }
 }

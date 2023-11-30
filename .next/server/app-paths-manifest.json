@@ -1,8 +1,7 @@
 {
   "/pages/register/travel-bag/page": "app/pages/register/travel-bag/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/bag-print-mob/page": "app/dashboard/bag-print-mob/page.js",
-  "/page": "app/page.js",
-  "/pages/register/travel/page": "app/pages/register/travel/page.js",
-  "/api/control/route": "app/api/control/route.js"
+  "/pages/contact-us/page": "app/pages/contact-us/page.js",
+  "/pages/complaint/page": "app/pages/complaint/page.js",
+  "/api/control/route": "app/api/control/route.js",
+  "/pages/register/travel/page": "app/pages/register/travel/page.js"
 }
