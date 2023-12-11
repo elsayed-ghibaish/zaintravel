@@ -14,6 +14,7 @@ interface DataItem {
   paymentType: string;
   Phone: number;
   TypeOfTrip: string;
+  Endlectures: string;
   BookingDay: any;
   confirmation: string;
   _id: any;
@@ -274,6 +275,7 @@ export default function ListPrintBooking() {
               <th className="p-3 w-10 border">م</th>
               <th className="w-3/12 border">الاسم</th>
               <th className="border">نوع الرحلة</th>
+              <th className="border border-slate-50">المواعيد</th>
               <th className="w-3/12 border">نقطة التحرك</th>
               <th className="border">رقم التليفون</th>
               <th className="w-28 border">نوع الدفع</th>
@@ -298,6 +300,9 @@ export default function ListPrintBooking() {
                     <td className="bolder border-l border-gray-100">{`${
                       selectedTypeOfTrip ? selectedTypeOfTrip : item.TypeOfTrip
                     }`}</td>
+                    <td className="bolder border-l border-gray-100">
+                        {item.Endlectures}
+                      </td>
                     <td className="bolder border-l border-gray-100 text-sm">
                       {`${
                         item.selectedArea

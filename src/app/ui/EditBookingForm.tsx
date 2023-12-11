@@ -204,9 +204,10 @@ export default function EditBookingForm({
                   onChange={(e) => setNewEndlectures(e.target.value)}
                   required
                 >
-                  <option value="02:00 مساء">02:00 مساء</option>
-                  <option value="03:00 مساء">03:00 مساء</option>
-                  <option value="04:30 مساء">04:30 مساء</option>
+                  <option value="04:30">04:30</option>
+                  <option value="03:00">03:00</option>
+                  <option value="02:00">02:00</option>
+                  <option value="قبل كدة">قبل كدة</option>
                 </select>
               </div>
             )}

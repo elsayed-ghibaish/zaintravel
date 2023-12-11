@@ -25,6 +25,7 @@ export default function TravelForm() {
   const [BookingDays, setBookingDays]: any = useState("");
   const [filterEnabledTravel, setfilterEnabledTravel] = useState("");
   const [BookingStartDate, setBookingStartDate]: any = useState(false);
+  const [loading, setLoading] = useState(false); // إضافة حالة للتحكم في حالة التحميل
 
   // Get Data Booking
   useEffect(() => {
@@ -94,6 +95,8 @@ export default function TravelForm() {
       console.error("يجب الموافقة على الشروط والأحكام قبل الإرسال");
       return;
     }
+    // تفعيل حالة التحميل
+    setLoading(true);
 
     const dataToSend = {
       FullName,
@@ -171,7 +174,7 @@ export default function TravelForm() {
       <div className="mt-5"></div>
       <div className="mx-auto max-w-2xl text-center mt-20">
         <h2 className="text-3xl font-bold tracking-tight text-red-600 sm:text-4xl font-tajawal">
-           حجز رحلة
+          حجز رحلة
         </h2>
         <p className="mt-2 text-lg leading-8 text-gray-600 font-tajawal">
           من فضلك قم بملء البيانات المطلوبة وسيتم التواصل معك في أقرب وقت
@@ -328,9 +331,10 @@ export default function TravelForm() {
                   <option value="" disabled hidden>
                     اختر
                   </option>
-                  <option value="02:00 مساء">02:00 مساء</option>
-                  <option value="03:00 مساء">03:00 مساء</option>
-                  <option value="04:30 مساء">04:30 مساء</option>
+                  <option value="04:30">04:30</option>
+                  <option value="03:00">03:00</option>
+                  <option value="02:00">02:00</option>
+                  <option value="قبل كدة">قبل كدة</option>
                 </select>
               </div>
             )}

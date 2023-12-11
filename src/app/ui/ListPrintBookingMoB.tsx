@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { format, parseISO } from "date-fns";
+import { addDays, format, parseISO } from "date-fns";
 import { ar } from "date-fns/locale"; // استيراد لغة العربية
 import { city } from "../api/regionApi";
 import { HiPencilAlt } from "react-icons/hi";
@@ -19,7 +19,9 @@ interface DataItem {
 }
 export default function ListPrintBookingMoB() {
   const [data, setData] = useState<DataItem[]>([]);
-  const [BookingDay, setBookingDay] = useState<string | null>(null);
+  const [BookingDay, setBookingDay] = useState<string | null>(
+    format(addDays(new Date(), 1), "yyyy-MM-dd")
+  );
   const [selectedCity, setselectedCity] = useState<string | null>(null);
 
   let counter = 1; // تهيئة متغير الـ counter لكل بيان
