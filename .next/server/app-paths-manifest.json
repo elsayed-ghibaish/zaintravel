@@ -1,8 +1,3 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/booking-print/page": "app/dashboard/booking-print/page.js",
-  "/api/control/route": "app/api/control/route.js",
-  "/dashboard/booking-print-mob/page": "app/dashboard/booking-print-mob/page.js",
-  "/api/booking/route": "app/api/booking/route.js",
-  "/dashboard/accent-booking/page": "app/dashboard/accent-booking/page.js"
+  "/dashboard/booking-print/page": "app/dashboard/booking-print/page.js"
 }

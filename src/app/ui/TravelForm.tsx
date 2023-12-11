@@ -134,6 +134,9 @@ export default function TravelForm() {
       setSuccess(true);
     } catch (error) {
       console.error("Failed to submit form:", error);
+    } finally {
+      // إلغاء تفعيل حالة التحميل بعد الانتهاء سواء نجاحًا أو فشل
+      setLoading(false);
     }
   };
 
@@ -458,14 +461,13 @@ export default function TravelForm() {
             className={`block w-full rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm 
              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600
             ${
-              submitButtonDisabled
+              submitButtonDisabled || loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-red-700 hover:bg-red-800"
             }`}
-            disabled={submitButtonDisabled}
+            disabled={submitButtonDisabled || loading}
           >
-            {" "}
-            ارسال طلب الحجز{" "}
+            {loading ? "جاري إرسال البيانات..." : "ارسال طلب الحجز"}
           </button>
         </div>
 

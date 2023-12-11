@@ -18,6 +18,7 @@ export default function TravelFormBag() {
   const [BagStartDate, setBagStartDate]: any = useState(false);
   const [BagDays, setBagDays]: any = useState("");
   const [filterEnabledTravelBag, setfilterEnabledTravelBag] = useState("");
+  const [loading, setLoading] = useState(false); // إضافة حالة للتحكم في حالة التحميل
 
   // Get Data Booking
   useEffect(() => {
@@ -91,6 +92,9 @@ export default function TravelFormBag() {
       return;
     }
 
+    // تفعيل حالة التحميل
+    setLoading(true);
+
     const dataToSend = {
       FullName,
       Phone,
@@ -124,6 +128,9 @@ export default function TravelFormBag() {
       setSuccess(true); // تعيين الحالة إلى نجاح
     } catch (error) {
       console.error("Failed to submit form:", error);
+    } finally {
+      // إلغاء تفعيل حالة التحميل بعد الانتهاء سواء نجاحًا أو فشل
+      setLoading(false);
     }
   };
 
@@ -196,8 +203,8 @@ export default function TravelFormBag() {
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6 focus:outline-red-600"
                 onChange={(e) => setFullName(e.target.value)}
                 value={FullName}
-                pattern="[ء-ي\s]*" // هذا النمط يسمح بإدخال الأحرف العربية فقط
-                title="الرجاء إدخال الاسم باللغة العربية"
+                pattern="[ء-ي\s]+ [ء-ي\s]+ [ء-ي\s]+" // هذا النمط يسمح بإدخال الأحرف العربية فقط
+                title="الرجاء إدخال الاسم باللغة العربية ويجب أن يكون الأسم ثلاثى على الأقل"
                 required
               />
             </div>
@@ -293,8 +300,8 @@ export default function TravelFormBag() {
                     اختر الشنطة
                   </option>
                   <option value="شنطة أكل صغيرة">شنطة أكل صغيرة</option>
-                  <option value="شنطة سفر متوسطة">شنطة سفر متوسطة</option>
-                  <option value="شنطة سفر كبيرة">شنطة سفر كبيرة</option>
+                  <option value="شنطة سفر">شنطة سفر</option>
+                  <option value="أخري">أخري</option>
                 </select>
               </div>
             </div>
@@ -416,14 +423,13 @@ export default function TravelFormBag() {
             className={`block w-full rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm 
              focus-visible:outline-offset-2 focus-visible:outline-red-600 mb-10
             ${
-              submitButtonDisabled
+              submitButtonDisabled || loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-red-700 hover:bg-red-800"
             }`}
-            disabled={submitButtonDisabled}
+            disabled={submitButtonDisabled || loading}
           >
-            {" "}
-            ارسال طلب الحجز{" "}
+            {loading ? "جاري إرسال البيانات..." : "ارسال طلب الحجز"}
           </button>
         </div>
 

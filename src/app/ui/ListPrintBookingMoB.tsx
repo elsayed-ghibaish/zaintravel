@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { addDays, format, parseISO } from "date-fns";
 import { ar } from "date-fns/locale"; // استيراد لغة العربية
-import { city } from "../api/regionApi";
+import { city, TypeOfTripSel } from "../api/regionApi";
 import { HiPencilAlt } from "react-icons/hi";
 import { FcCancel } from "react-icons/fc";
 
@@ -23,6 +23,9 @@ export default function ListPrintBookingMoB() {
     format(addDays(new Date(), 1), "yyyy-MM-dd")
   );
   const [selectedCity, setselectedCity] = useState<string | null>(null);
+  const [selectedTypeOfTrip, setselectedTypeOfTrip] = useState<string | null>(
+    null
+  );
 
   let counter = 1; // تهيئة متغير الـ counter لكل بيان
 
@@ -57,6 +60,12 @@ export default function ListPrintBookingMoB() {
     setselectedCity(event.target.value);
   };
 
+  const handleTypeOfTripSelChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setselectedTypeOfTrip(event.target.value);
+  };
+
   const filteredData = data.filter((item) => {
     // تحقق من التاريخ
     if (
@@ -69,6 +78,20 @@ export default function ListPrintBookingMoB() {
     // تحقق من المنطقة
     if (selectedCity && item.selectedCity !== selectedCity) {
       return false;
+    }
+
+    // تحديد نوع الرحلة
+    if (selectedTypeOfTrip) {
+      if (selectedTypeOfTrip === "ذهاب وعودة") {
+        // إذا كان نوع الرحلة هو "ذهاب وعودة"، فقط عرض الحجوزات التي تحمل هذا النوع
+        return item.TypeOfTrip === "ذهاب وعودة";
+      } else {
+        // إذا كان نوع الرحلة هو "ذهاب" أو "عودة"، فقط تجاهل الحجوزات التي تحمل نوع "ذهاب وعودة"
+        return (
+          item.TypeOfTrip === selectedTypeOfTrip ||
+          item.TypeOfTrip === "ذهاب وعودة"
+        );
+      }
     }
 
     // العنصر يفي بجميع شروط الفلتر
@@ -119,6 +142,28 @@ export default function ListPrintBookingMoB() {
             ))}
           </select>
         </div>
+
+        <label
+          htmlFor="checkboxesTwo"
+          className="text-sm font-medium leading-6 text-gray-900 m-5 print:hidden"
+        >
+          حسب الرحلة
+        </label>
+        <select
+          id="checkboxesTwo"
+          name="checkboxesTwo"
+          className="w-auto rounded-md border-0 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+        focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2 print:hidden"
+          value={selectedTypeOfTrip || ""}
+          onChange={handleTypeOfTripSelChange}
+        >
+          <option value="">اختر</option>
+          {TypeOfTripSel.map((country, index) => (
+            <option key={index} value={country}>
+              {country}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="block mt-10">

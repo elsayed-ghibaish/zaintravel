@@ -153,35 +153,33 @@ export default function ListPrintBooking() {
   const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
   return (
-    <div className="mx-auto w-[90vw] text-center text-black print:w-full">
-      <div className="flex items-center  gap-5 flex-row justify-between print:flex">
+    <div className="mx-auto w-[90vw] text-center text-black print:w-[95vw]">
+      <div className="flex items-center  gap-5 flex-row justify-between print:flex border-b-2">
         <div className="items-center justify-center">
           <img
-            src="/logo.svg"
+            src="/Logo-not-text.svg"
             alt="Zain Travel"
-            className="w-24 justify-center items-center inline-block"
+            className="w-14 mb-5 justify-center items-center inline-block"
           />
-          {/* <span className="block w-40 text-red-600 text-xl font-bold">
-            الـزيـــن تـراڤـــل
+          <span className="w-40 text-red-700 text-3xl font-bold">
+            Zain Travel
           </span>
-          <span className=" w-44 text-center font-medium">
-            للرحلات و النقل السياحي
-          </span> */}
         </div>
-        <div className="text-right items-start justify-start w-4/12">
-          <h3 className="p-2">
-            <span className="text-red-600 font-semibold">اليوم:</span>{" "}
-            {BookingDay &&
-              format(parseISO(BookingDay), "eeee, d MMMM yyyy", {
-                locale: ar,
-              })}
-          </h3>
+      </div>
 
-          <h3 className="p-2">
-            <span className="text-red-600 font-semibold">المنطقة:</span>{" "}
-            {selectedCities.join(" - ")}
-          </h3>
-        </div>
+      <div className="grid grid-cols-2 mt-5">
+        <h3 className="p-2">
+          <span className="text-red-600 font-semibold">اليوم:</span>{" "}
+          {BookingDay &&
+            format(parseISO(BookingDay), "eeee, d MMMM yyyy", {
+              locale: ar,
+            })}
+        </h3>
+
+        <h3 className="p-2">
+          <span className="text-red-600 font-semibold">المنطقة:</span>{" "}
+          {selectedCities.join(" - ") ? selectedCities.join(" - ") : "الكل"}
+        </h3>
       </div>
 
       <div className="print:hidden">
@@ -274,11 +272,11 @@ export default function ListPrintBooking() {
             <tr className="p-5">
               <th className="p-3 w-10 border">م</th>
               <th className="w-3/12 border">الاسم</th>
-              <th className="border">نوع الرحلة</th>
-              <th className="border border-slate-50">المواعيد</th>
+              <th className="w-28 border">نوع الرحلة</th>
+              <th className="w-24 border border-slate-50">المواعيد</th>
               <th className="w-3/12 border">نقطة التحرك</th>
               <th className="border">رقم التليفون</th>
-              <th className="w-28 border">نوع الدفع</th>
+              <th className="w-16 border">نوع الدفع</th>
               <th className="w-28 border print:hidden">الإجراءات</th>
             </tr>
           </thead>
@@ -301,8 +299,8 @@ export default function ListPrintBooking() {
                       selectedTypeOfTrip ? selectedTypeOfTrip : item.TypeOfTrip
                     }`}</td>
                     <td className="bolder border-l border-gray-100">
-                        {item.Endlectures}
-                      </td>
+                      {item.Endlectures}
+                    </td>
                     <td className="bolder border-l border-gray-100 text-sm">
                       {`${
                         item.selectedArea
@@ -313,8 +311,8 @@ export default function ListPrintBooking() {
                     <td className="bolder border-l border-gray-100">
                       {item.Phone}
                     </td>
-                    <td className="bolder border-l border-gray-100">
-                      {item.paymentType}
+                    <td className="bolder border-l border-gray-100 text-sm">
+                      {item.paymentType === "فودافون كاش" ? "V-Cash" : "نقداً"}
                     </td>
                     <td className="border border-l border-gray-100 print:hidden">
                       <Link href={`/dashboard/editBooking/${item._id}`}>

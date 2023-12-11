@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { format, parseISO } from "date-fns";
+import { addDays, format, parseISO } from "date-fns";
 import { ar } from "date-fns/locale"; // استيراد لغة العربية
 import { city } from "@/app/api/regionApi";
 
@@ -18,7 +18,9 @@ interface DataItem {
 
 export default function ListPrintBagMoB() {
   const [data, setData] = useState<DataItem[]>([]);
-  const [BagDay, setBagDay] = useState<string | null>(null);
+  const [BagDay, setBagDay] = useState<string | null>(
+    format(addDays(new Date(), 1), "yyyy-MM-dd")
+  );
   const [selectedCity, setselectedCity] = useState<string | null>(null);
 
   let counter = 1; // تهيئة متغير الـ counter لكل بيان
