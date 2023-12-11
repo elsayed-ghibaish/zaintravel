@@ -1,7 +1,8 @@
 {
+  "/pages/register/travel/page": "app/pages/register/travel/page.js",
+  "/dashboard/booking-print/page": "app/dashboard/booking-print/page.js",
+  "/api/control/route": "app/api/control/route.js",
   "/pages/register/travel-bag/page": "app/pages/register/travel-bag/page.js",
   "/pages/contact-us/page": "app/pages/contact-us/page.js",
-  "/pages/complaint/page": "app/pages/complaint/page.js",
-  "/api/control/route": "app/api/control/route.js",
-  "/pages/register/travel/page": "app/pages/register/travel/page.js"
+  "/page": "app/page.js"
 }

@@ -6,6 +6,7 @@ const bookingSchema = new Schema(
     Phone: String,
     BookingDay: Date,
     TypeOfTrip: String,
+    Endlectures: String,
     selectedCity: String,
     selectedArea: String,
     paymentType: String,

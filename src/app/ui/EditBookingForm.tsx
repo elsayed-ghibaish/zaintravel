@@ -11,6 +11,7 @@ export default function EditBookingForm({
   Phone,
   BookingDay,
   TypeOfTrip,
+  Endlectures,
   selectedCity,
   selectedArea,
   paymentType,
@@ -19,6 +20,7 @@ export default function EditBookingForm({
   const [newPhone, setNewPhone] = useState(Phone);
   const [newBookingDay, setNewBookingDay] = useState(BookingDay);
   const [newTypeOfTrip, setNewTypeOfTrip] = useState(TypeOfTrip);
+  const [newEndlectures, setNewEndlectures] = useState(Endlectures);
   const [newselectedCity, setNewSelectedCity] = useState(selectedCity);
   const [newselectedArea, setNewSelectedArea] = useState(selectedArea);
   const [newpaymentType, setNewPaymentType] = useState(paymentType);
@@ -47,6 +49,7 @@ export default function EditBookingForm({
           newPhone,
           newBookingDay,
           newTypeOfTrip,
+          newEndlectures,
           newselectedCity,
           newselectedArea,
           newpaymentType,
@@ -183,6 +186,30 @@ export default function EditBookingForm({
                 ))}
               </select>
             </div>
+
+            {TypeOfTrip == "عودة" && (
+              <div className="sm:col-span-3 mt-5 ">
+                <label
+                  htmlFor="TripType"
+                  className="text-sm font-medium leading-6 text-gray-900"
+                >
+                  موعد نهاية المحاضرات
+                </label>
+                <select
+                  name="TripType"
+                  id="TripType"
+                  className="block w-full rounded-md border-0 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+        focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2"
+                  value={newEndlectures}
+                  onChange={(e) => setNewEndlectures(e.target.value)}
+                  required
+                >
+                  <option value="02:00 مساء">02:00 مساء</option>
+                  <option value="03:00 مساء">03:00 مساء</option>
+                  <option value="04:30 مساء">04:30 مساء</option>
+                </select>
+              </div>
+            )}
           </div>
 
           <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -277,7 +304,8 @@ export default function EditBookingForm({
             تحديث
           </button>
           <Link
-            href={`/dashboard/accent-booking`} as="/dashboard/accent-booking"
+            href={`/dashboard/accent-booking`}
+            as="/dashboard/accent-booking"
             className="block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold bg-red-600 hover:bg-red-700 text-white shadow-sm 
              focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
           >

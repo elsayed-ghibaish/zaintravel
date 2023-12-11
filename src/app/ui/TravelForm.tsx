@@ -15,6 +15,7 @@ export default function TravelForm() {
   const [Phone, setPhone] = useState("");
   const [BookingDay, setBookingDay] = useState("");
   const [TypeOfTrip, setTypeOfTrip] = useState("");
+  const [Endlectures, setEndlectures] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedArea, setSelectedArea] = useState("");
   const [paymentType, setPaymentType] = useState("");
@@ -63,9 +64,6 @@ export default function TravelForm() {
     setSelectedArea(event.target.value);
   };
 
-  const currentDate = addDays(new Date(), 1);
-  const maxDate = addDays(currentDate, BookingDays); // تحديد أعلى تاريخ مسموح به
-
   // إنشاء قائمة بالأيام المتاحة
   const inputStartDate = new Date(BookingStartDate); // قم بتعديل هذا التاريخ حسب رغبتك
   const inputEndDate = addDays(inputStartDate, BookingDays); // قم بتعديل هذا التاريخ حسب رغبتك
@@ -102,6 +100,7 @@ export default function TravelForm() {
       Phone,
       BookingDay,
       TypeOfTrip,
+      Endlectures,
       selectedCity,
       selectedArea,
       paymentType,
@@ -125,6 +124,7 @@ export default function TravelForm() {
       setPhone("");
       setBookingDay("");
       setTypeOfTrip("");
+      setEndlectures("");
       setSelectedCity("");
       setSelectedArea("");
       setPaymentType("");
@@ -144,6 +144,7 @@ export default function TravelForm() {
         الهاتف: ${data.Phone}
         تاريخ الرحلة: ${data.BookingDay}
         نوع الرحلة: ${data.TypeOfTrip}
+        موعد نهاية المحاضرة: ${data.Endlectures}
         المنطقة: ${data.selectedCity}
         ${data.selectedArea ? `نقطة التحرك: ${data.selectedArea}` : ""}
         الدفع : ${data.paymentType}
@@ -170,7 +171,7 @@ export default function TravelForm() {
       <div className="mt-5"></div>
       <div className="mx-auto max-w-2xl text-center mt-20">
         <h2 className="text-3xl font-bold tracking-tight text-red-600 sm:text-4xl font-tajawal">
-          🛫 حجز رحلة
+           حجز رحلة
         </h2>
         <p className="mt-2 text-lg leading-8 text-gray-600 font-tajawal">
           من فضلك قم بملء البيانات المطلوبة وسيتم التواصل معك في أقرب وقت
@@ -204,8 +205,8 @@ export default function TravelForm() {
              focus:outline-red-600 sm:text-sm sm:leading-6"
                 onChange={(e) => setFullName(e.target.value)}
                 value={FullName}
-                pattern="[ء-ي\s]*" // هذا النمط يسمح بإدخال الأحرف العربية فقط
-                title="الرجاء إدخال الاسم باللغة العربية"
+                pattern="[ء-ي\s]+ [ء-ي\s]+ [ء-ي\s]+" // هذا النمط يسمح بإدخال الأحرف العربية فقط
+                title="الرجاء إدخال الاسم باللغة العربية ويجب أن يكون الأسم ثلاثى على الأقل"
                 required
               />
             </div>
@@ -306,6 +307,33 @@ export default function TravelForm() {
                 ))}
               </select>
             </div>
+
+            {TypeOfTrip !== "ذهاب" && (
+              <div className="sm:col-span-3 mt-5 ">
+                <label
+                  htmlFor="Endlectures"
+                  className="text-sm font-medium leading-6 text-gray-900"
+                >
+                  موعد نهاية المحاضرات
+                </label>
+                <select
+                  name="Endlectures"
+                  id="Endlectures"
+                  className="block w-full rounded-md border-0 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+        focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2"
+                  value={Endlectures}
+                  onChange={(e) => setEndlectures(e.target.value)}
+                  required
+                >
+                  <option value="" disabled hidden>
+                    اختر
+                  </option>
+                  <option value="02:00 مساء">02:00 مساء</option>
+                  <option value="03:00 مساء">03:00 مساء</option>
+                  <option value="04:30 مساء">04:30 مساء</option>
+                </select>
+              </div>
+            )}
           </div>
 
           <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

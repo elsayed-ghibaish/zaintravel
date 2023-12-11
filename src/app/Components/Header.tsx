@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="z-10 w-full relative bg-white dark:bg-gray-800 shadow-md">
+      <nav className="z-10 w-full relative bg-white dark:bg-gray-800 shadow-md print:hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
           <div className="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative">
             <input

@@ -108,6 +108,8 @@ export default function ListPrintBag() {
     // العنصر يفي بجميع شروط الفلتر
     return true;
   });
+  
+  const currentDate = new Date();
 
   return (
     <div className="mx-auto w-[95vw] text-center text-black mb-10">

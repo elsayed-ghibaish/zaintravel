@@ -15,6 +15,7 @@ interface DataItem {
   paymentType: string;
   Phone: number;
   TypeOfTrip: string;
+  Endlectures: string;
   BookingDay: any;
   confirmation: string;
   _id: any;
@@ -28,13 +29,16 @@ export default function ConfirmBookingForm() {
   const [BookingDay, setBookingDay] = useState<string | null>(null);
   const [selectedCity, setselectedCity] = useState<string | null>(null);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
   let counter = 1; // تهيئة متغير الـ counter لكل بيان
 
   // Get Data Booking
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/booking', {
+        const res = await fetch("/api/booking", {
           cache: "no-store",
         });
 
@@ -124,23 +128,39 @@ export default function ConfirmBookingForm() {
     setselectedCity(event.target.value);
   };
 
-  const filteredData = data.filter((item) => {
-    // تحقق من التاريخ
-    if (
-      BookingDay &&
-      format(parseISO(item.BookingDay), "yyyy-MM-dd") !== BookingDay
-    ) {
-      return false;
-    }
+  const filteredData = data
+    .filter((item) => {
+      // تحقق من التاريخ
+      if (
+        BookingDay &&
+        format(parseISO(item.BookingDay), "yyyy-MM-dd") !== BookingDay
+      ) {
+        return false;
+      }
 
-    // تحقق من المنطقة
-    if (selectedCity && item.selectedCity !== selectedCity) {
-      return false;
-    }
+      // تحقق من المنطقة
+      if (selectedCity && item.selectedCity !== selectedCity) {
+        return false;
+      }
 
-    // العنصر يفي بجميع شروط الفلتر
-    return true;
-  });
+      // العنصر يفي بجميع شروط الفلتر
+      return true;
+    })
+
+    // فلترة البيانات واستبعاد التي لا تستوفي الشرط
+    .filter((item) => item.confirmation === "NotActivate");
+
+  // حساب عدد الصفحات الإجمالي بناءً على البيانات المفلترة
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // حساب مؤشر البداية والنهاية للعناصر في الصفحة الحالية
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // إضافة متغيرات لحساب الصفحة السابقة والتالية
+  const nextPage = currentPage < totalPages ? currentPage + 1 : currentPage;
+  const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
   return (
     <>
@@ -194,12 +214,31 @@ export default function ConfirmBookingForm() {
         </div>
 
         <div className="block mt-10">
+          <div className="mb-5">
+            <label
+              htmlFor="itemsPerPage"
+              className="text-sm font-medium leading-6 text-gray-900 m-5"
+            >
+              عدد العناصر في كل صفحة
+            </label>
+            <input
+              type="number"
+              id="itemsPerPage"
+              name="itemsPerPage"
+              className="w-auto rounded-md border-0 p-2 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+          focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2"
+              value={itemsPerPage}
+              onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            ></input>
+          </div>
+
           <table className="table-fixed w-full">
             <thead className="bg-red-800 text-white">
               <tr className="p-5">
                 <th className="p-3 w-10 border">م</th>
                 <th className="w-3/12 border">الاسم</th>
                 <th className="border">نوع الرحلة</th>
+                <th className="border border-slate-50">نهاية المحاضرات</th>
                 <th className="border">التاريخ</th>
                 <th className="border w-2/12">نقطة التحرك</th>
                 <th className="border w-28">نوع الدفع</th>
@@ -207,18 +246,23 @@ export default function ConfirmBookingForm() {
               </tr>
             </thead>
             <tbody className="bg-slate-200">
-              {filteredData.map((item, index) => {
+              {currentItems.map((item, index) => {
                 if (item.confirmation === "NotActivate") {
+                  const currentColorClass =
+                    index % 2 === 0 ? "bg-zinc-200" : "bg-zinc-300";
                   // تحقق من الشرط قبل عرض البيانات
                   return (
                     <tr
-                      className="border-slate-300 border-b text-gray-900"
+                      className={`border-b border-gray-100 hover:bg-zinc-500 hover:text-white ${currentColorClass}`}
                       key={index}
                     >
                       <td className="border border-slate-50">{counter++}</td>
                       <td className="pr-2 border border-slate-50 text-right">{`${item.FullName}`}</td>
-                      <td className="bolder border-slate-50">
+                      <td className="bolder border-slate-50 border-l">
                         {item.TypeOfTrip}
+                      </td>
+                      <td className="bolder border-slate-50">
+                        {item.Endlectures}
                       </td>
                       <td className="border border-slate-50">
                         {item.BookingDay &&
@@ -227,13 +271,17 @@ export default function ConfirmBookingForm() {
                           })}
                       </td>
                       <td className="border border-slate-50 text-sm">
-                        {item.selectedArea}
+                        {`${
+                          item.selectedArea
+                            ? item.selectedArea
+                            : item.selectedCity
+                        }`}
                       </td>
                       <td className="border border-slate-50">
                         {item.paymentType}
                       </td>
                       <td>
-                      <button
+                        <button
                           onClick={() => UpdatedBooking(item._id)}
                           className="bg-slate-100 text-white p-2 m-1 rounded hover:bg-slate-300"
                         >
@@ -241,7 +289,7 @@ export default function ConfirmBookingForm() {
                         </button>
 
                         <Link href={`/dashboard/editBooking/${item._id}`}>
-                          <ol className="bg-slate-100 p-2  rounded hover:bg-slate-300 inline-flex">
+                          <ol className="bg-slate-100 p-2  rounded hover:bg-slate-300 text-gray-800 inline-flex">
                             <HiPencilAlt />
                           </ol>
                         </Link>
@@ -263,6 +311,44 @@ export default function ConfirmBookingForm() {
               })}
             </tbody>
           </table>
+
+          <div className="flex justify-center mt-5">
+            <button
+              key={prevPage}
+              onClick={() => setCurrentPage(prevPage)}
+              className={`mx-2 p-2 rounded ${
+                currentPage === prevPage
+                  ? "bg-gray-300 text-gray-700"
+                  : "bg-red-600 text-white"
+              }`}
+            >
+              السابق
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`mx-2 p-2 px-5 rounded ${
+                  currentPage === i + 1
+                    ? "bg-red-600 text-white"
+                    : "bg-gray-300 text-gray-700"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              key={nextPage}
+              onClick={() => setCurrentPage(nextPage)}
+              className={`mx-2 p-2 rounded ${
+                currentPage === nextPage
+                  ? "bg-gray-300 text-gray-700"
+                  : "bg-red-600 text-white"
+              }`}
+            >
+              التالي
+            </button>
+          </div>
         </div>
       </div>
     </>

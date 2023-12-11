@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { format, parseISO } from "date-fns";
+import { addDays, format, parseISO } from "date-fns";
 import { ar } from "date-fns/locale"; // استيراد لغة العربية
 import { city, TypeOfTripSel } from "../api/regionApi";
 import { HiPencilAlt } from "react-icons/hi";
@@ -21,11 +21,15 @@ interface DataItem {
 
 export default function ListPrintBooking() {
   const [data, setData] = useState<DataItem[]>([]);
-  const [BookingDay, setBookingDay] = useState<string | null>(null);
+  const [BookingDay, setBookingDay] = useState<string | null>(
+    format(addDays(new Date(), 1), "yyyy-MM-dd")
+  );
   const [selectedCities, setselectedCities] = useState<string[]>([]);
   const [selectedTypeOfTrip, setselectedTypeOfTrip] = useState<string | null>(
     null
   );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(30); // تحديد عدد العناصر في كل صفحة
 
   let counter = 1; // تهيئة متغير الـ counter لكل بيان
 
@@ -100,42 +104,86 @@ export default function ListPrintBooking() {
     setselectedCities(updatedCities);
   };
 
-  const filteredData = data.filter((item) => {
-    // تحقق من التاريخ
-    if (
-      BookingDay &&
-      format(parseISO(item.BookingDay), "yyyy-MM-dd") !== BookingDay
-    ) {
-      return false;
-    }
-    // تحقق من المنطقة
-    if (
-      selectedCities.length > 0 &&
-      !selectedCities.includes(item.selectedCity)
-    ) {
-      return false;
-    }
-
-    if (selectedTypeOfTrip) {
-      if (selectedTypeOfTrip === "ذهاب وعودة") {
-        // إذا كان نوع الرحلة هو "ذهاب وعودة"، فعرض الحجوزات التي تحمل "ذهاب" أو "عودة"
-        return true;
-      } else {
-        // إذا كان نوع الرحلة هو "ذهاب" أو "عودة"، فقط عرض الحجوزات التي تحمل هذا النوع
-        return (
-          item.TypeOfTrip === selectedTypeOfTrip ||
-          item.TypeOfTrip === "ذهاب وعودة"
-        );
+  // فلترة البيانات واستبعاد التي لا تستوفي الشرط
+  const filteredData = data
+    .filter((item) => {
+      // تحقق من التاريخ
+      if (
+        BookingDay &&
+        format(parseISO(item.BookingDay), "yyyy-MM-dd") !== BookingDay
+      ) {
+        return false;
       }
-    }
+      // تحقق من المنطقة
+      if (
+        selectedCities.length > 0 &&
+        !selectedCities.includes(item.selectedCity)
+      ) {
+        return false;
+      }
+      // تحديد نوع الرحلة
+      if (selectedTypeOfTrip) {
+        if (selectedTypeOfTrip === "ذهاب وعودة") {
+          // إذا كان نوع الرحلة هو "ذهاب وعودة"، فقط عرض الحجوزات التي تحمل هذا النوع
+          return item.TypeOfTrip === "ذهاب وعودة";
+        } else {
+          // إذا كان نوع الرحلة هو "ذهاب" أو "عودة"، فقط تجاهل الحجوزات التي تحمل نوع "ذهاب وعودة"
+          return (
+            item.TypeOfTrip === selectedTypeOfTrip ||
+            item.TypeOfTrip === "ذهاب وعودة"
+          );
+        }
+      }
+      // العنصر يفي بجميع شروط الفلتر
+      return true;
+    })
+    .filter((item) => item.confirmation === "activate");
 
-    // العنصر يفي بجميع شروط الفلتر
-    return true;
-  });
+  // حساب عدد الصفحات الإجمالي بناءً على البيانات المفلترة
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  // حساب مؤشر البداية والنهاية للعناصر في الصفحة الحالية
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // إضافة متغيرات لحساب الصفحة السابقة والتالية
+  const nextPage = currentPage < totalPages ? currentPage + 1 : currentPage;
+  const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
   return (
-    <div className="mx-auto w-[95vw] text-center text-black">
-      <div className="mt-4">
+    <div className="mx-auto w-[90vw] text-center text-black print:w-full">
+      <div className="flex items-center  gap-5 flex-row justify-between print:flex">
+        <div className="items-center justify-center">
+          <img
+            src="/logo.svg"
+            alt="Zain Travel"
+            className="w-24 justify-center items-center inline-block"
+          />
+          {/* <span className="block w-40 text-red-600 text-xl font-bold">
+            الـزيـــن تـراڤـــل
+          </span>
+          <span className=" w-44 text-center font-medium">
+            للرحلات و النقل السياحي
+          </span> */}
+        </div>
+        <div className="text-right items-start justify-start w-4/12">
+          <h3 className="p-2">
+            <span className="text-red-600 font-semibold">اليوم:</span>{" "}
+            {BookingDay &&
+              format(parseISO(BookingDay), "eeee, d MMMM yyyy", {
+                locale: ar,
+              })}
+          </h3>
+
+          <h3 className="p-2">
+            <span className="text-red-600 font-semibold">المنطقة:</span>{" "}
+            {selectedCities.join(" - ")}
+          </h3>
+        </div>
+      </div>
+
+      <div className="print:hidden">
         <div className="flex m-2 items-center text-center justify-center">
           <a
             href="/dashboard"
@@ -143,18 +191,6 @@ export default function ListPrintBooking() {
           >
             رجوع للخلف
           </a>
-        </div>
-
-        <div className="grid grid-cols-2 mt-5">
-          <h3>
-            اليوم:{" "}
-            {BookingDay &&
-              format(parseISO(BookingDay), "eeee, d MMMM yyyy", {
-                locale: ar,
-              })}
-          </h3>
-
-          <h3>المنطقة: {selectedCities.join(" - ")}</h3>
         </div>
 
         <div className="mt-5">
@@ -214,44 +250,71 @@ export default function ListPrintBooking() {
         </div>
       </div>
 
-      <div className="block mt-10 mb-10">
+      <div className="block mt-10 mb-10 print:mt-5">
+        <div className="m-3 print:hidden">
+          <label htmlFor="connter-3" className="ml-5">
+            عدد الصفوف
+          </label>
+          <input
+            type="number"
+            id="connter-3"
+            name="connter-3"
+            min={1}
+            value={itemsPerPage}
+            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            className="rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset
+          ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-600 
+          focus:outline-red-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+
         <table className="table-fixed w-full">
-          <thead className="bg-red-800 text-white">
+          <thead className="bg-red-700 text-white">
             <tr className="p-5">
               <th className="p-3 w-10 border">م</th>
               <th className="w-3/12 border">الاسم</th>
               <th className="border">نوع الرحلة</th>
-              <th className="border w-3/12">نقطة التحرك</th>
+              <th className="w-3/12 border">نقطة التحرك</th>
               <th className="border">رقم التليفون</th>
-              <th className="border w-28">نوع الدفع</th>
-              <th className="border w-28 print:hidden">الإجراءات</th>
+              <th className="w-28 border">نوع الدفع</th>
+              <th className="w-28 border print:hidden">الإجراءات</th>
             </tr>
           </thead>
-          <tbody className="bg-slate-200">
-            {filteredData.map((item, index) => {
+          <tbody className="border-slate-100">
+            {currentItems.map((item, index) => {
               if (item.confirmation === "activate") {
+                const currentColorClass =
+                  index % 2 === 0 ? "bg-zinc-200" : "bg-zinc-300";
+
                 return (
-                  <tr className="border-slate-300 border-b" key={index}>
-                    <td className="border border-slate-50">{counter++}</td>
-                    <td className="pr-2 text-right">{`${item.FullName}`}</td>
-                    <td className="bolder border-slate-50">{`${
+                  <tr
+                    className={`border-b border-gray-100 ${currentColorClass}`}
+                    key={index}
+                  >
+                    <td className="border border-l border-gray-100 p-2">
+                      {index + 1}
+                    </td>
+                    <td className="border border-l border-gray-100 pr-2 text-right">{`${item.FullName}`}</td>
+                    <td className="bolder border-l border-gray-100">{`${
                       selectedTypeOfTrip ? selectedTypeOfTrip : item.TypeOfTrip
                     }`}</td>
-                    <td className="bolder border-slate-50 text-sm">
+                    <td className="bolder border-l border-gray-100 text-sm">
                       {`${
                         item.selectedArea
                           ? item.selectedArea
                           : item.selectedCity
                       }`}
                     </td>
-                    <td className="bolder border-slate-50">{item.Phone}</td>
-                    <td className="bolder border-slate-50">
+                    <td className="bolder border-l border-gray-100">
+                      {item.Phone}
+                    </td>
+                    <td className="bolder border-l border-gray-100">
                       {item.paymentType}
                     </td>
-                    <td className="print:hidden">
+                    <td className="border border-l border-gray-100 print:hidden">
                       <Link href={`/dashboard/editBooking/${item._id}`}>
                         <ol className="bg-slate-100 p-2  rounded hover:bg-slate-300 inline-flex">
-                          <HiPencilAlt />
+                          <HiPencilAlt title="تعديل" />
                         </ol>
                       </Link>
 
@@ -259,7 +322,7 @@ export default function ListPrintBooking() {
                         onClick={() => removeBooking(item._id)}
                         className="bg-slate-100 text-white p-2 m-1 rounded hover:bg-slate-300"
                       >
-                        <FcCancel />
+                        <FcCancel title="حذف" />
                       </button>
                     </td>
                   </tr>
@@ -272,6 +335,44 @@ export default function ListPrintBooking() {
             })}
           </tbody>
         </table>
+
+        <div className="flex justify-center mt-5 print:hidden">
+          <button
+            key={prevPage}
+            onClick={() => setCurrentPage(prevPage)}
+            className={`mx-2 p-2 rounded ${
+              currentPage === prevPage
+                ? "bg-gray-300 text-gray-700"
+                : "bg-red-600 text-white"
+            }`}
+          >
+            السابق
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`mx-2 p-2 px-5 rounded ${
+                currentPage === i + 1
+                  ? "bg-red-600 text-white"
+                  : "bg-gray-300 text-gray-700"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            key={nextPage}
+            onClick={() => setCurrentPage(nextPage)}
+            className={`mx-2 p-2 rounded ${
+              currentPage === nextPage
+                ? "bg-gray-300 text-gray-700"
+                : "bg-red-600 text-white"
+            }`}
+          >
+            التالي
+          </button>
+        </div>
       </div>
     </div>
   );
