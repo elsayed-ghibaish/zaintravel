@@ -1,3 +1,6 @@
 {
+  "/page": "app/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/accent-booking/page": "app/dashboard/accent-booking/page.js",
   "/dashboard/booking-print/page": "app/dashboard/booking-print/page.js"
 }

@@ -47,12 +47,33 @@ export default function Home() {
             </a>
           </div>
         </div>
-
-
-
-
-        
       </div>
+
+      
+
+      {/* <section>
+        <div className="m-auto grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 bg-gradient-to-r from-cyan-100 to-blue-200 justify-center items-center">
+          <div className="sm:col-span-3">
+            <img src="/bag.png" alt="" className="w-[65%] lg:float-left lg:ml-20 sm:items-center sm:justify-center sm:float-none" />
+          </div>
+          <div className="sm:col-span-3">
+            <h2 className="text-4xl font-semibold text-red-600 mb-5">حجز شنطة</h2>
+            <p className="w-3/5">
+              إذا كنت تبحث عن تجربة سهلة وفعالة لحجز شنطتك بسرعة وأمان، فأنت في
+              المكان الصحيح، يتيح لك موقعنا الالكترونى فرصة فريدة لتخصيص رحلتك
+              وضمان أمان أمتعتك.
+            </p>
+            <a
+              href="/pages/register/travel-bag"
+              className="group mt-10 transition duration-300 inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-600 text-white hover:bg-red-700 hover:text-slate-100 active:bg-red-700 active:text-slate-300 focus-visible:outline-slate-900"
+            >
+              حجز الآن
+            </a>
+          </div>
+        </div>
+      </section> */}
+
+
     </main>
   );
 }

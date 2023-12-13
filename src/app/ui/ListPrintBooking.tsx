@@ -159,9 +159,9 @@ export default function ListPrintBooking() {
           <img
             src="/Logo-not-text.svg"
             alt="Zain Travel"
-            className="w-14 mb-5 justify-center items-center inline-block"
+            className="w-14 justify-center items-center inline-block"
           />
-          <span className="w-40 text-red-700 text-3xl font-bold">
+          <span className="w-40 text-red-700 text-3xl font-bold relative top-5">
             Zain Travel
           </span>
         </div>
@@ -273,7 +273,7 @@ export default function ListPrintBooking() {
               <th className="p-3 w-10 border">م</th>
               <th className="w-3/12 border">الاسم</th>
               <th className="w-28 border">نوع الرحلة</th>
-              <th className="w-24 border border-slate-50">المواعيد</th>
+              <th className="w-20 border border-slate-50">المواعيد</th>
               <th className="w-3/12 border">نقطة التحرك</th>
               <th className="border">رقم التليفون</th>
               <th className="w-16 border">نوع الدفع</th>
