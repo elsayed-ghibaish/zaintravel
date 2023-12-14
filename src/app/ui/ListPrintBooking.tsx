@@ -6,6 +6,7 @@ import { city, TypeOfTripSel } from "../api/regionApi";
 import { HiPencilAlt } from "react-icons/hi";
 import { FcCancel } from "react-icons/fc";
 import Link from "next/link";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 interface DataItem {
   FullName: string;
@@ -58,7 +59,7 @@ export default function ListPrintBooking() {
 
   // Deleate Booking item
   const removeBooking = async (id: any) => {
-    const confirmed = confirm("Are you sure");
+    const confirmed = confirm("هل أنت متأكد من رفض الطلب والحذف");
 
     if (confirmed) {
       try {
@@ -155,7 +156,7 @@ export default function ListPrintBooking() {
   return (
     <div className="mx-auto w-[90vw] text-center text-black print:w-[95vw]">
       <div className="flex items-center  gap-5 flex-row justify-between print:flex border-b-2">
-        <div className="items-center justify-center">
+        <div className="items-center justify-center hidden print:block">
           <img
             src="/Logo-not-text.svg"
             alt="Zain Travel"
@@ -341,7 +342,6 @@ export default function ListPrintBooking() {
 
         <div className="flex justify-center mt-5 print:hidden">
           <button
-            key={prevPage}
             onClick={() => setCurrentPage(prevPage)}
             className={`mx-2 p-2 rounded ${
               currentPage === prevPage
@@ -376,6 +376,25 @@ export default function ListPrintBooking() {
             التالي
           </button>
         </div>
+      </div>
+
+      <div className="hidden flex-col items-center border-t border-slate-400/10 py-5 sm:flex-row-reverse sm:justify-between absolute bottom-0 w-full print:flex">
+        <div className="flex gap-x-6 ml-10">
+          <div className="flex justify-center items-center space-x-4" dir="ltr">
+            <FaFacebook size={20} />
+            <span>zaintravel.2020</span>
+
+            <FaInstagram size={20} />
+            <span>zaintravel2020</span>
+
+            <FaWhatsapp size={20} />
+            <span>+201012930010</span>
+          </div>
+        </div>
+        <p className="mt-6 text-sm text-slate-500 sm:mt-0">
+          العلامة التجارية وجميع الحقوق محفوظة ©{" "}
+          {`${format(new Date(), "yyyy")}`}
+        </p>
       </div>
     </div>
   );

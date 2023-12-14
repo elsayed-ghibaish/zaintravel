@@ -16,7 +16,7 @@ export default function Home() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-20 text-center lg:pt-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 text-center lg:pt-32">
           <h1 className="mx-auto max-w-4xl font-tajawal text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
             مرحبا بكم فى شركة {/* */}{" "}
             <span className="relative whitespace-nowrap text-red-600 block">
@@ -49,15 +49,19 @@ export default function Home() {
         </div>
       </div>
 
-      
-
-      {/* <section>
-        <div className="m-auto grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 bg-gradient-to-r from-cyan-100 to-blue-200 justify-center items-center">
-          <div className="sm:col-span-3">
-            <img src="/bag.png" alt="" className="w-[65%] lg:float-left lg:ml-20 sm:items-center sm:justify-center sm:float-none" />
+      <section>
+        <div
+          className="bg-gradient-to-r from-gray-300 to-gray-200 w-[95vw]
+       md:w-[85vw] lg:w-[75vw] h-auto lg:h-[60vh] m-auto p-5 rounded-t-2xl
+        grid lg:grid-cols-[5fr,3fr] sm:grid-cols-[1fr] items-center"
+        >
+          <div className="flex gap-x-6 items-center justify-center">
+            <img src="/Luggage.png" alt="Bag" className="w-[65%]" />
           </div>
-          <div className="sm:col-span-3">
-            <h2 className="text-4xl font-semibold text-red-600 mb-5">حجز شنطة</h2>
+          <div className="lg:block  flex  flex-col items-center justify-center">
+            <h2 className="block text-4xl font-semibold text-red-600 mb-5">
+              حجز شنطة
+            </h2>
             <p className="w-3/5">
               إذا كنت تبحث عن تجربة سهلة وفعالة لحجز شنطتك بسرعة وأمان، فأنت في
               المكان الصحيح، يتيح لك موقعنا الالكترونى فرصة فريدة لتخصيص رحلتك
@@ -71,9 +75,35 @@ export default function Home() {
             </a>
           </div>
         </div>
-      </section> */}
+      </section>
 
-
+      <section>
+        <div
+          className="mt-1 bg-gradient-to-r from-gray-200 to-gray-300 w-[95vw]
+       md:w-[85vw] lg:w-[75vw] h-auto lg:h-[50vh] m-auto p-5 rounded-b-2xl
+        grid lg:grid-cols-[5fr,3fr] sm:grid-cols-[1fr] items-center mb-10"
+        >
+          <div className="flex flex-col lg:mr-44 lg:items-start items-center justify-center">
+            <h2 className="block text-4xl font-semibold text-red-600 mb-5">
+              شروط إلغاء الحجز
+            </h2>
+            <p className="w-3/5 lg:text-right">
+              نحن نفهم أن التخطيط لرحلتك قد يكون تجربة مثيرة وممتعة، ولكن نظرًا
+              للظروف الغير متوقعة التي قد تحدث، نود التأكيد على أهمية قراءة شروط
+              إلغاء الرحلة قبل حجز رحلتك.
+            </p>
+            <a
+              href="/pages/booking-conditions"
+              className="group mt-10 transition duration-300 inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-600 text-white hover:bg-red-700 hover:text-slate-100 active:bg-red-700 active:text-slate-300 focus-visible:outline-slate-900"
+            >
+              التفاصيل
+            </a>
+          </div>
+          <div className="flex lg:block items-center justify-center">
+            <img src="/conditions.png" alt="conditions" className="w-[65%]" />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
