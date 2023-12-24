@@ -106,6 +106,12 @@ export default function ListPrintBooking() {
     setselectedCities(updatedCities);
   };
 
+  // Print Page Button
+  const handlePrint = () => {
+    // يمكنك وضع الكود الذي يتم تنفيذه عند النقر على الزر هنا
+    window.print();
+  };
+
   // فلترة البيانات واستبعاد التي لا تستوفي الشرط
   const filteredData = data
     .filter((item) => {
@@ -191,6 +197,13 @@ export default function ListPrintBooking() {
           >
             رجوع للخلف
           </a>
+
+          <button
+            className="bg-rose-500 text-white hover:bg-rose-600 p-2 m-2 rounded print:hidden"
+            onClick={handlePrint}
+          >
+            طباعة
+          </button>
         </div>
 
         <div className="mt-5">

@@ -1,9 +1,16 @@
-import Image from "next/image";
+import {
+  FaSuitcaseRolling,
+  FaTimesCircle,
+  FaHeadset,
+  FaClipboardList,
+  FaCommentDots,
+} from "react-icons/fa";
+import { TbBus } from "react-icons/tb";
 
 export default function Home() {
   return (
     <main className="m-auto">
-      <div className="isolate bg-white px-6 py-20 sm:py-15 lg:px-8">
+      <div className="isolate bg-white px-6 pt-20 lg:py-20 sm:py-15 lg:px-8">
         <div
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
           aria-hidden="true"
@@ -16,7 +23,7 @@ export default function Home() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 text-center lg:pt-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-0 text-center lg:pt-10">
           <h1 className="mx-auto max-w-4xl font-tajawal text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl">
             مرحبا بكم فى شركة {/* */}{" "}
             <span className="relative whitespace-nowrap text-red-600 block">
@@ -37,73 +44,107 @@ export default function Home() {
             الجامعية، خدمة توصيل مخصصة لطلبة الجامعات، لتجربة تعليمية تبدأ
             بالراحة والاطمئنان.
           </p>
-          <div className="mt-10 flex justify-center gap-x-6">
-            <a
-              className="group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-600 text-white hover:bg-red-700 hover:text-slate-100 active:bg-red-700 active:text-slate-300 focus-visible:outline-slate-900"
-              color="slate"
-              href="/pages/register/travel"
-            >
-              احجز رحلتك الآن
-            </a>
-          </div>
+          <div className="mt-10 flex justify-center gap-x-6"></div>
         </div>
       </div>
 
-      <section>
-        <div
-          className="bg-gradient-to-r from-gray-300 to-gray-200 w-[95vw]
-       md:w-[85vw] lg:w-[75vw] h-auto lg:h-[60vh] m-auto p-5 rounded-t-2xl
-        grid lg:grid-cols-[5fr,3fr] sm:grid-cols-[1fr] items-center"
-        >
-          <div className="flex gap-x-6 items-center justify-center">
-            <img src="/Luggage.png" alt="Bag" className="w-[65%]" />
-          </div>
-          <div className="lg:block  flex  flex-col items-center justify-center">
-            <h2 className="block text-4xl font-semibold text-red-600 mb-5">
-              حجز شنطة
-            </h2>
-            <p className="w-3/5">
-              إذا كنت تبحث عن تجربة سهلة وفعالة لحجز شنطتك بسرعة وأمان، فأنت في
-              المكان الصحيح، يتيح لك موقعنا الالكترونى فرصة فريدة لتخصيص رحلتك
-              وضمان أمان أمتعتك.
-            </p>
-            <a
-              href="/pages/register/travel-bag"
-              className="group mt-10 transition duration-300 inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-600 text-white hover:bg-red-700 hover:text-slate-100 active:bg-red-700 active:text-slate-300 focus-visible:outline-slate-900"
-            >
-              حجز الآن
-            </a>
-          </div>
-        </div>
-      </section>
+      <div className="min-h-screen bg-gradient-to-tr from-[#ffffff15] to-[#9189fc1f] text-gray-800">
+        <div className="container mx-auto p-8 lg:w-4/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+            {/* حجز رحلة */}
+            <div className="bg-white rounded-lg shadow p-6 hover:shadow-md transition duration-3000">
+              <TbBus className="text-blue-500 text-4xl mb-4" />
+              <h2 className="text-lg font-bold mb-4">حجز رحلة</h2>
+              <p className="mb-4">
+                مرحبًا بك في عالم الرحلات الجامعية، نحن نقدم لكم خدمة توصيل
+                فريدة مُصممة خصيصًا لطلبة الجامعات، لتجعل رحلتكم التعليمية بداية
+                مريحة وسلسة، جدول رحلاتك القادمة معنا واستمتع بتجربة لا تنسى
+              </p>
+              <a
+                href="/pages/register/travel"
+                className="text-blue-500 hover:text-blue-600 font-bold"
+              >
+                احجز الآن
+              </a>
+            </div>
 
-      <section>
-        <div
-          className="mt-1 bg-gradient-to-r from-gray-200 to-gray-300 w-[95vw]
-       md:w-[85vw] lg:w-[75vw] h-auto lg:h-[50vh] m-auto p-5 rounded-b-2xl
-        grid lg:grid-cols-[5fr,3fr] sm:grid-cols-[1fr] items-center mb-10"
-        >
-          <div className="flex flex-col lg:mr-44 lg:items-start items-center justify-center">
-            <h2 className="block text-4xl font-semibold text-red-600 mb-5">
-              شروط إلغاء الحجز
-            </h2>
-            <p className="w-3/5 lg:text-right">
-              نحن نفهم أن التخطيط لرحلتك قد يكون تجربة مثيرة وممتعة، ولكن نظرًا
-              للظروف الغير متوقعة التي قد تحدث، نود التأكيد على أهمية قراءة شروط
-              إلغاء الرحلة قبل حجز رحلتك.
-            </p>
-            <a
-              href="/pages/booking-conditions"
-              className="group mt-10 transition duration-300 inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 bg-red-600 text-white hover:bg-red-700 hover:text-slate-100 active:bg-red-700 active:text-slate-300 focus-visible:outline-slate-900"
-            >
-              التفاصيل
-            </a>
+            {/* حجز شنطة */}
+            <div className="bg-white rounded-lg shadow p-6 hover:shadow-md transition duration-300">
+              <FaSuitcaseRolling className="text-green-500 text-4xl mb-4" />
+              <h2 className="text-lg font-bold mb-4">حجز شنطة</h2>
+              <p className="mb-4">
+                إذا كنت تبحث عن تجربة سهلة وفعالة لحجز شنطتك بسرعة وأمان، فأنت
+                في المكان الصحيح، يتيح لك موقعنا الالكترونى فرصة فريدة لتخصيص
+                رحلتك وضمان أمان أمتعتك
+              </p>
+              <a
+                href="/pages/register/travel-bag"
+                className="text-green-500 hover:text-green-600 font-bold"
+              >
+                احجز الآن
+              </a>
+            </div>
           </div>
-          <div className="flex lg:block items-center justify-center">
-            <img src="/conditions.png" alt="conditions" className="w-[65%]" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            {/* شروط الحجز */}
+            <div className="bg-white rounded-lg shadow p-6 hover:shadow-md transition duration-300">
+              <FaClipboardList className="text-red-500 text-4xl mb-4" />
+              <h2 className="text-lg font-bold mb-4">شروط الحجز</h2>
+              <p className="mb-4">فهم شروطنا يضمن لك تجربة حجز عادلة وشفافة</p>
+              <a
+                href="/pages/booking-conditions"
+                className="text-red-500 hover:text-red-600 font-bold"
+              >
+                عرض الشروط
+              </a>
+            </div>
+
+            {/* إلغاء الحجز */}
+            <div className="bg-white rounded-lg shadow p-6 hover:shadow-md transition duration-300">
+              <FaTimesCircle className="text-yellow-500 text-4xl mb-4" />
+              <h2 className="text-lg font-bold mb-4">إلغاء الحجز</h2>
+              <p className="mb-4">سياسات إلغاء مرنة لضمان راحتك ورضاك</p>
+              <a
+                href="/pages/cancellation-terms"
+                className="text-yellow-500 hover:text-yellow-600 font-bold"
+              >
+                إلغاء الحجز
+              </a>
+            </div>
+
+            {/* الاقتراحات والشكاوى */}
+            <div className="bg-white rounded-lg shadow p-6 hover:shadow-md transition duration-300">
+              <FaCommentDots className="text-purple-500 text-4xl mb-4" />
+              <h2 className="text-lg font-bold mb-4">الاقتراحات والشكاوى</h2>
+              <p className="mb-4">
+                نتلقي اقتراحاتكم ومعالجة شكاويكم هي أولويتنا
+              </p>
+              <a
+                href="/pages/complaint"
+                className="text-purple-500 hover:text-purple-600 font-bold"
+              >
+                شاركنا رأيك
+              </a>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6 mt-6">
+            {/* اتصل بنا */}
+            <div className="bg-white rounded-lg shadow p-6 hover:shadow-md transition duration-300 lg:col-span-2">
+              <FaHeadset className="text-blue-600 text-4xl mb-4" />
+              <h2 className="text-lg font-bold mb-4">اتصل بنا</h2>
+              <p className="mb-4">فريق الدعم لدينا جاهز لمساعدتك في أي وقت</p>
+              <a
+                href="/pages/contact-us"
+                className="text-blue-600 hover:text-blue-700 font-bold"
+              >
+                تواصل معنا
+              </a>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

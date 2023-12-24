@@ -6,3 +6,7 @@
 body {
   font-family: 'Tajawal' !important;
 }
+::selection {
+  color: white;
+  background: rgb(220 38 38);
+}

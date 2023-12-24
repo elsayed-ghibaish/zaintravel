@@ -29,6 +29,12 @@ export default function Footer() {
               </a>
               <a
                 className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                href="/pages/cancellation-terms"
+              >
+                إلغاء الحجز
+              </a>
+              <a
+                className="inline-block rounded-lg px-2 py-1 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                 href="/pages/complaint"
               >
                 الأقتراحات والشكاوي

@@ -11,55 +11,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/pages/booking-conditions/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pages/booking-conditions/page.js"
-    ],
     "/pages/register/travel/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/pages/register/travel/page.js"
-    ],
-    "/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
-    ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
-    ],
-    "/dashboard/accent-booking/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/accent-booking/page.js"
-    ],
-    "/dashboard/booking-print/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/booking-print/page.js"
     ],
     "/pages/register/travel-bag/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/pages/register/travel-bag/page.js"
     ],
-    "/dashboard/bag-print/page": [
+    "/pages/booking-conditions/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/bag-print/page.js"
+      "static/chunks/app/pages/booking-conditions/page.js"
     ],
-    "/dashboard/booking-print-mob/page": [
+    "/pages/cancellation-terms/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/booking-print-mob/page.js"
+      "static/chunks/app/pages/cancellation-terms/page.js"
     ],
-    "/dashboard/bag-print-mob/page": [
+    "/pages/complaint/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/bag-print-mob/page.js"
+      "static/chunks/app/pages/complaint/page.js"
+    ],
+    "/pages/contact-us/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/pages/contact-us/page.js"
     ]
   }
 }
