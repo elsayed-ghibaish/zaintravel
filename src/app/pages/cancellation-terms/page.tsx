@@ -1,24 +1,33 @@
-export default function CancellationTerms() {
+import React from 'react';
+
+const CancellationPolicy = () => {
   return (
-    <div className="container mx-auto lg:w-3/5 w-[98vw] my-10  p-10 bg-gray-100 rounded-md">
-      <h2 className="text-2xl font-bold mt-8 mb-4 text-red-700">
-        إلغاء الحجز
-      </h2>
-      <ol className="list-decimal ml-8 text-gray-900 font-medium">
-        <span className="block">
-          يتم الالغاء برسالة على واتس اب على الرقم 01012930010 قبل السادسة مساءً
-        </span>
-        <span className="block">
-          الالغاء بعد السادسة : اى إلغاء بعد الساعة 6 مساءً فى اليوم السابق
-          للرحلة يتم الاتى
-        </span>
-        <li> يتم تحويل مبلغ 100 بشكل فورى فودافون كاش على الرقم 01012930010</li>
-        <li>فى حال تكرار الالغاء فى نفس الشهر يتم دفع مبلغ الحجز كاملآ</li>
-        <li>
-          فى حال عدم الدفع لن يتم قبول حجزك مرة اخرى حتى دفع المبالغ المستحقة
-        </li>
-        <span>* ملحوظة : إلغاء الحجز المسموح فى الظروف القهرية فقط</span>
-      </ol>
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-2xl mx-auto bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-lg shadow-xl overflow-hidden">
+        <div className="p-6 sm:p-8">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-red-700 mb-4">شروط إلغاء الحجز</h2>
+
+          <div className="mb-5">
+            <h3 className="text-lg sm:text-xl font-medium text-gray-700 mb-2">1. الإلغاء قبل الساعة 6 مساءً:</h3>
+            <p className="text-gray-600 text-sm sm:text-base">يجب إرسال رسالة إلغاء عبر الواتساب إلى الرقم 01012930010 قبل الساعة السادسة مساءً.</p>
+          </div>
+
+          <div className="mb-5">
+            <h3 className="text-lg sm:text-xl font-medium text-gray-700 mb-2">2. الإلغاء بعد الساعة 6 مساءً:</h3>
+            <ul className="list-disc pl-5 text-gray-600 text-sm sm:text-base">
+              <li>تحويل مبلغ 100 جنيه مصري فورًا عبر فودافون كاش إلى الرقم 01012930010.</li>
+              <li>في حالة تكرار الإلغاء، يُطلب دفع كامل مبلغ الحجز.</li>
+              <li>إذا لم يتم الدفع، لن يتم قبول أي حجوزات مستقبلية حتى يتم سداد جميع المبالغ المستحقة.</li>
+            </ul>
+          </div>
+
+          <div className="text-gray-600 italic text-sm sm:text-base">
+            <p>ملاحظة: يُسمح بإلغاء الحجز دون رسوم في الظروف القهرية فقط.</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+
+export default CancellationPolicy;

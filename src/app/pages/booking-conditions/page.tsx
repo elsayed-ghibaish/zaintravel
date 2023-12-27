@@ -1,106 +1,138 @@
-import { Metadata } from "next";
+import React from "react";
 
-export const metadata: Metadata = {
-  title: "Zain Travel - شروط الحجز",
-  description:
-    "الشروط الخاصة بنظام الحجز على موقع الزين للرحلات و النقل السياحى",
-};
-export default function BookingConditions() {
+const BookingAndLuggageTerms = () => {
   return (
-    <>
-      <div className="container mx-auto lg:w-3/5 sm:w-full my-8 p-10 bg-gray-100 rounded-md">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">
-          شروط حجز الرحلة:
-        </h2>
-        <ol className="list-decimal ml-8 text-gray-900">
-          <li>
-            مواعيد الحجز :الحجز متاح يوميآ من الساعة ال 7 صباحآ وحتى السادسة
-            مساء والحجز يتم قبل تاريخ الرحلة ب24 ساعة
-          </li>
-          <li>
-            معلومات الهوية : يجب تقديم معلومات هوية صحيحة للمسافرين بما فى ذلك
-            الاسم بالكامل وارقام التليفونات{" "}
-          </li>
-          <li>
-            حجز المرافقين : يتم الحجز للمرافقين بنفس الطريقة مع التنويه برساله
-            على الواتس اب بأسم المرافق
-          </li>
-          <li>
-            تأكيد الحجز : يتم إرسال كشوفات الاسماء يوميآ على الجروب الرئيسى بعد
-            اغلاق باب الحجز ب ساعة على الاكثر
-          </li>
-          <li>
-            فى حال إغلاق الحجز : يتم التواصل على واتس اب على الرقم 01012930010
-            وإنتظار الرد فى حال توافر أماكن إضافية{" "}
-          </li>
-          <li>
-            ملحوظة :لن يتم قبول حجز اى شخص غير موجود فى جروب الواتس أب الرئيسى
-            او اى بينات خاطئة او اى حجز بطريقة اخرى غير الموقع الرسمي
-          </li>
-          <li>برجاء الألتزام ب مواعيد الرحلات المرفقة مع كل نقطة تحرك</li>
-        </ol>
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-lg shadow-xl overflow-hidden">
+        <div className="p-6 sm:p-8">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-red-800 mb-4 text-center">
+            شروط حجز الرحلات والشنط
+          </h2>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900">
-          شروط حجز الشنط:
-        </h2>
-        <ol className="list-decimal ml-8 text-gray-900">
-          <li>الشنط المسموح بها بشكل مجانى مع المسافر : </li>
-          <span>
-            عدد 1 شنطة سفر متوسطة + شنطة كتف صغيرة لا يتعدى وزن الاتنين 20 كيلو.
-          </span>
-          <li>الشنط الإضافية :</li>
-          <span>
-            يتم دفع 50 عن كل قطعة زيادة لايتعدى وزنها 15 كيلو وغير مسموح بأكثر
-            من 2 قطعة إضافية
-          </span>
-          <li>
-            غير مسموح بأحجام الشنط الكبيرة واكياس البلاستيك و الاجولة (الشوال)
-            يجب وضع كافة الاشياء فى شنط سفر مناسبة تليق بكم ك طلبة جامعة مرموقة{" "}
-          </li>
-        </ol>
+          {/* Booking Terms */}
+          <h3 className="text-lg sm:text-xl font-semibold text-red-700 mb-2">
+            شروط حجز الرحلات:
+          </h3>
+          <TermDetail title="مواعيد الحجز:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>الحجز متاح يوميًا حتى الساعة السادسة مساءً.</li>
+              <li>يُتطلب الحجز قبل تاريخ الرحيل بفترة لا تقل عن 24 ساعة.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="معلومات الهوية للمسافرين:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                يجب تقديم معلومات هوية صحيحة للمسافرين بما فى ذلك الاسم بالكامل
+                وارقام الهواتف الصحيحة.
+              </li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="حجز المرافقين:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>طريقة الحجز: مماثلة لحجز المسافر الرئيسي.</li>
+              <li>تأكيد الحجز: عبر رسالة على الواتساب تتضمن اسم المرافق.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="في حال إغلاق الحجز:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                التواصل عبر واتساب على الرقم 01012930010 وانتظار الرد للتحقق من
+                توافر أماكن إضافية.
+              </li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="ملاحظات هامة">
+            <ul className="list-disc pl-5 italic text-gray-600">
+              <li>
+                الشروط: لن يتم قبول حجز لأشخاص غير موجودين في الجروب الرئيسي أو
+                لديهم بيانات خاطئة.
+              </li>
+              <li>الالتزام: ضرورة الالتزام بمواعيد الرحلات المحددة.</li>
+            </ul>
+          </TermDetail>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900">
-          إرسال الشنط للطلبة
-        </h2>
-        <ol className="list-decimal ml-8 text-gray-900">
-          <li>يتم حجز الشنط من خلال الموقع الرسمى فقط</li>
-          <li>لن يتم قبول اى شنط بدون حجز على الموقع</li>
-        </ol>
+          {/* ... Other Booking Terms ... */}
+          {/* Luggage Terms */}
+          <h3 className="text-lg sm:text-xl font-semibold text-red-700 mt-6 mb-2">
+            شروط حجز الشنط:
+          </h3>
+          <TermDetail title="الشنط المسموح بها بشكل مجاني مع المسافر:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                يُسمح بشنطة سفر متوسطة واحدة بالإضافة إلى شنطة كتف صغيرة، ويجب
+                أن لا يتجاوز وزن الاثنين معًا 20 كيلو.
+              </li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="الشنط الإضافية:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>الرسوم: 50 جنيه لكل قطعة إضافية بوزن لا يتجاوز 15 كيلو.</li>
+              <li>الحد الأقصى: لا يسمح بأكثر من قطعتين إضافيتين.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="قيود الشنط:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>الممنوعات: الشنط الكبيرة وأكياس البلاستيك والأجولة.</li>
+              <li>الشرط: استخدام شنط سفر مناسبة.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="إرسال الشنط للطلبة:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>الحجز عبر الموقع الرسمي فقط.</li>
+              <li>ملاحظة: لن يتم قبول أي شنط بدون حجز مسبق.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="أسعار الشنط:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>شنطة أكل صغيرة: 50 جنيه.</li>
+              <li>شنطة سفر متوسطة: 100 جنيه.</li>
+              <li>شنطة سفر كبيرة: 150 جنيه.</li>
+              <li>الحد الادنى لارسال اى شئ : 50 جنيه.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="مواعيد إرسال الشنط:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                الحسينية وأبو حماد وكفر صقر: السبت والأحد (والاثنين لكفر صقر).
+              </li>
+              <li>فاقوس: الثلاثاء والأربعاء والخميس.</li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="تنويهات هامة:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>الدفع: عبر فودافون كاش على الرقم 01012930010.</li>
+              <li>
+                الشروط: في حال وجود أي خلاف، يتم دفع باقي المبلغ أثناء تسليم
+                الشنط.
+              </li>
+            </ul>
+          </TermDetail>
+          <TermDetail title="ملاحظة أخيرة:">
+            <ul className="list-disc pl-5 text-gray-600">
+              <li>
+                المسؤولية: الشركة غير مسئولة عن إرسال الشنط عبر طرق أو أشخاص غير
+                مصرح بهم.
+              </li>
+            </ul>
+          </TermDetail>
 
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900">
-          أسعار الشنط
-        </h2>
-        <ol className="list-decimal ml-8 text-gray-900">
-          <li>شنطة أكل صغيرة 50 ج</li>
-          <li>شنطة سفر متوسطة 100 ج</li>
-          <li>شنطة سفر كبيرة 150 ج</li>
-          <li>الحد الادنى لارسال اى شئ 50 ج</li>
-        </ol>
+          {/* ... Other Luggage Terms ... */}
+          
 
-        <h2 className="text-2xl font-bold mt-8 mb-4 text-gray-900">
-          مواعيد إرسال الشنط
-        </h2>
-        <ol className="list-decimal ml-8 text-gray-900">
-          <li>الحسينية : السبت و الاحد</li>
-          <li>أبو حماد : السبت و الاحد</li>
-          <li>كفر صقر : السبت و الاحد و الاثنين </li>
-          <li>فاقوس : الثلاثاء و الأربعاء و الخميس </li>
-          <span>* لن يتم قبول اى شنط فى مواعيد غير المذكورة </span>
-        </ol>
-
-        <div className="mt-8 text-gray-900">
-          <span>
-            تنويه : يتم دفع مبلغ حجز الشنط فودافون كاش فقط على الرقم التالى
-            01012930010 وفى حال اى خلاف فى الشروط يتم دفع باقى المبلغ أثناء
-            تسليم الشنط
-          </span>
-
-          <span className="block ">
-            ملحوظة : الشركة غير مسئولة عن إرسال الشنط مع طلبة أخرين
-            او أى طريقة أخرى
-          </span>
+          {/* ... Rest of the Terms ... */}
         </div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+const TermDetail = ({ title, children }: any) => (
+  <div className="mb-6">
+    <h4 className="text-md sm:text-lg font-medium text-gray-700 mb-1">
+      {title}
+    </h4>
+    {children}
+  </div>
+);
+
+export default BookingAndLuggageTerms;

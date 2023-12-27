@@ -21,6 +21,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/pages/register/travel-bag/page.js"
     ],
+    "/pages/contact-us/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/pages/contact-us/page.js"
+    ],
+    "/pages/complaint/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/pages/complaint/page.js"
+    ],
     "/pages/booking-conditions/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -30,16 +40,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/pages/cancellation-terms/page.js"
-    ],
-    "/pages/complaint/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pages/complaint/page.js"
-    ],
-    "/pages/contact-us/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pages/contact-us/page.js"
     ]
   }
 }
