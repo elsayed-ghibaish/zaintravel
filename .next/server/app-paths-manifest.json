@@ -1,6 +1,8 @@
 {
-  "/page": "app/page.js",
   "/pages/register/travel/page": "app/pages/register/travel/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/control/route": "app/api/control/route.js"
+  "/api/control/route": "app/api/control/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/booking-print/page": "app/dashboard/booking-print/page.js",
+  "/api/booking/route": "app/api/booking/route.js",
+  "/dashboard/accent-booking/page": "app/dashboard/accent-booking/page.js"
 }

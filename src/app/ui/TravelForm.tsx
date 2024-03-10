@@ -408,11 +408,10 @@ export default function TravelForm() {
                     if (country === "الحسينية" || country === "أبو حماد") {
                       return null; // لا تعرض هذه الخيارات
                     }
-                    if (
-                      country === "مفارق خضير" ||
-                      country === "كوبرى القصاصين"
-                    ) {
-                      return null; // لا تعرض هذه الخيارات مرة أخرى إذا كانت مضافة بالفعل
+                  }
+                  if (TypeOfTrip === "ذهاب" || TypeOfTrip === "ذهاب وعودة") {
+                    if (country === "كوبرى القصاصين") {
+                      return null; // لا تعرض هذه الخيارات
                     }
                   }
 
@@ -423,13 +422,6 @@ export default function TravelForm() {
                     </option>
                   );
                 })}
-
-                {TypeOfTrip === "عودة" && (
-                  <>
-                    <option value="مفارق خضير">مفارق خضير</option>
-                    <option value="كوبرى القصاصين">كوبرى القصاصين</option>
-                  </>
-                )}
               </select>
             </div>
 
