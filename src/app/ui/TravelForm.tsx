@@ -402,11 +402,34 @@ export default function TravelForm() {
                 required
               >
                 <option value=""></option>
-                {city.map((country, index) => (
-                  <option key={index} value={country}>
-                    {country}
-                  </option>
-                ))}
+                {city.map((country, index) => {
+                  // إذا كانت الدولة المحددة هي الدولة التي تريد إخفاء الخيارات لها وإضافة خيارات جديدة
+                  if (TypeOfTrip === "عودة") {
+                    if (country === "الحسينية" || country === "أبو حماد") {
+                      return null; // لا تعرض هذه الخيارات
+                    }
+                    if (
+                      country === "مفارق خضير" ||
+                      country === "كوبرى القصاصين"
+                    ) {
+                      return null; // لا تعرض هذه الخيارات مرة أخرى إذا كانت مضافة بالفعل
+                    }
+                  }
+
+                  // إذا لم تكن الدولة المحددة هي الدولة التي تريد إخفاء الخيارات لها
+                  return (
+                    <option key={index} value={country}>
+                      {country}
+                    </option>
+                  );
+                })}
+
+                {TypeOfTrip === "عودة" && (
+                  <>
+                    <option value="مفارق خضير">مفارق خضير</option>
+                    <option value="كوبرى القصاصين">كوبرى القصاصين</option>
+                  </>
+                )}
               </select>
             </div>
 

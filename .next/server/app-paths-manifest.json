@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/pages/register/travel/page": "app/pages/register/travel/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/control/route": "app/api/control/route.js"
+}
