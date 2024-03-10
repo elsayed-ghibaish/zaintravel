@@ -12,6 +12,7 @@ interface DataItem {
   FullName: string;
   selectedCity: string;
   selectedArea: string;
+  timing: string;
   paymentType: string;
   Phone: number;
   TypeOfTrip: string;
@@ -242,7 +243,7 @@ export default function ConfirmBookingForm() {
                 <th className="border">نوع الرحلة</th>
                 <th className="border border-slate-50">نهاية المحاضرات</th>
                 <th className="border">التاريخ</th>
-                <th className="border w-2/12">نقطة التحرك</th>
+                <th className="border w-2/12">نقطة التحرك - التوقيت</th>
                 <th className="border w-28">نوع الدفع</th>
                 <th className="border">تاكيد / تعديل / حذف</th>
               </tr>
@@ -274,8 +275,8 @@ export default function ConfirmBookingForm() {
                       </td>
                       <td className="border border-slate-50 text-sm">
                         {`${
-                          item.selectedArea
-                            ? item.selectedArea
+                          item.selectedArea 
+                            ? item.selectedArea +  ` - ${item.timing}`
                             : item.selectedCity
                         }`}
                       </td>

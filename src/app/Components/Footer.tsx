@@ -52,7 +52,7 @@ export default function Footer() {
             <a
               href="https://wa.me/+201017732845"
               target="_blank"
-            >{`${PoweredBy} `}</a>
+            ><span className="text-red-600 hover:text-red-700">{`${PoweredBy} `}</span></a>
           </p>
         </div>
       </div>

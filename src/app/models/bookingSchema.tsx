@@ -9,6 +9,7 @@ const bookingSchema = new Schema(
     Endlectures: String,
     selectedCity: String,
     selectedArea: String,
+    timing: String,
     paymentType: String,
     confirmation: String,
   },

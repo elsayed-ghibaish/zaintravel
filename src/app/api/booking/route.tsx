@@ -11,6 +11,7 @@ export async function POST(request: any) {
     Endlectures,
     selectedCity,
     selectedArea,
+    timing,
     paymentType,
     confirmation,
   } = await request.json();
@@ -23,6 +24,7 @@ export async function POST(request: any) {
     Endlectures,
     selectedCity,
     selectedArea,
+    timing,
     paymentType,
     confirmation,
   });

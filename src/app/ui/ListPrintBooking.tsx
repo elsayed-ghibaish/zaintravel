@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { addDays, format, parseISO } from "date-fns";
 import { ar } from "date-fns/locale"; // استيراد لغة العربية
-import { city, TypeOfTripSel } from "../api/regionApi";
+import { city, TypeOfTripSel, EndlecturesTime } from "../api/regionApi";
 import { HiPencilAlt } from "react-icons/hi";
 import { FcCancel } from "react-icons/fc";
 import Link from "next/link";
@@ -12,6 +12,7 @@ interface DataItem {
   FullName: string;
   selectedCity: string;
   selectedArea: string;
+  timing: any;
   paymentType: string;
   Phone: number;
   TypeOfTrip: string;
@@ -30,10 +31,16 @@ export default function ListPrintBooking() {
   const [selectedTypeOfTrip, setselectedTypeOfTrip] = useState<string | null>(
     null
   );
+  const [TimingMov, setTimingMov] = useState<string>("");
+  const [TimingEnd, setTimingEnd] = useState<string>("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(30); // تحديد عدد العناصر في كل صفحة
 
   let counter = 1; // تهيئة متغير الـ counter لكل بيان
+
+  const timeOne = ["المعاد الاول", "المعاد الثانى"];
+  const timeTwo = ["02:00", "03:00", "04:30", "قبل كدة"];
 
   // Get Data Booking
   useEffect(() => {
@@ -98,6 +105,14 @@ export default function ListPrintBooking() {
     setselectedTypeOfTrip(event.target.value);
   };
 
+  const handleTimeMovChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setTimingMov(event.target.value);
+  };
+
+  const handleEndTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setTimingEnd(event.target.value);
+  };
+
   const handleCityChange = (city: string) => {
     const updatedCities = selectedCities.includes(city)
       ? selectedCities.filter((c) => c !== city)
@@ -122,6 +137,17 @@ export default function ListPrintBooking() {
       ) {
         return false;
       }
+
+      // تحقق من الوقت
+      if (TimingMov) {
+        if (item.timing.includes(TimingMov)) {
+          return true;
+        } else if (item.timing.includes(TimingMov)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
       // تحقق من المنطقة
       if (
         selectedCities.length > 0 &&
@@ -142,6 +168,18 @@ export default function ListPrintBooking() {
           );
         }
       }
+
+      // تحقق من نهاية المحاضرة
+      if (TimingEnd) {
+        if (item.Endlectures.includes(TimingEnd)) {
+          return true;
+        } else if (item.Endlectures.includes(TimingEnd)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
       // العنصر يفي بجميع شروط الفلتر
       return true;
     })
@@ -260,6 +298,50 @@ export default function ListPrintBooking() {
               </option>
             ))}
           </select>
+
+          <label
+            htmlFor="checkboxesFour"
+            className="text-sm font-medium leading-6 text-gray-900 m-5 print:hidden"
+          >
+            حسب معاد الرحلة
+          </label>
+          <select
+            id="checkboxesFour"
+            name="checkboxesFour"
+            className="w-auto rounded-md border-0 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+        focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2 print:hidden"
+            value={TimingMov || ""}
+            onChange={handleTimeMovChange}
+          >
+            <option value="">اختر</option>
+            {timeOne.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+
+          <label
+            htmlFor="checkboxesthree"
+            className="text-sm font-medium leading-6 text-gray-900 m-5 print:hidden"
+          >
+            حسب موعد نهاية المحاضرة
+          </label>
+          <select
+            id="checkboxesthree"
+            name="checkboxesthree"
+            className="w-auto rounded-md border-0 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+        focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2 print:hidden"
+            value={TimingEnd || ""}
+            onChange={handleEndTimeChange}
+          >
+            <option value="">اختر</option>
+            {EndlecturesTime.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -288,9 +370,9 @@ export default function ListPrintBooking() {
               <th className="w-3/12 border">الاسم</th>
               <th className="w-28 border">نوع الرحلة</th>
               <th className="w-20 border border-slate-50">المواعيد</th>
-              <th className="w-3/12 border">نقطة التحرك</th>
-              <th className="border">رقم التليفون</th>
-              <th className="w-16 border">نوع الدفع</th>
+              <th className="border">نقطة التحرك</th>
+              <th className="w-28 border">رقم التليفون</th>
+              <th className="w-28 border">نوع الدفع</th>
               <th className="w-28 border print:hidden">الإجراءات</th>
             </tr>
           </thead>
@@ -318,7 +400,8 @@ export default function ListPrintBooking() {
                     <td className="bolder border-l border-gray-100 text-sm">
                       {`${
                         item.selectedArea
-                          ? item.selectedArea
+                          ? item.selectedArea +
+                            ` - ${item.timing?.split("-")[0] ? item.timing?.split("-")[0] : "" }`
                           : item.selectedCity
                       }`}
                     </td>

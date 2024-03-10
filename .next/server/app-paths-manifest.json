@@ -1,8 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/pages/booking-conditions/page": "app/pages/booking-conditions/page.js",
-  "/pages/contact-us/page": "app/pages/contact-us/page.js",
-  "/pages/cancellation-terms/page": "app/pages/cancellation-terms/page.js",
-  "/pages/register/travel-bag/page": "app/pages/register/travel-bag/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
-}

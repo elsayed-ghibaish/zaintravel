@@ -6,6 +6,8 @@ import ControlTravelEdit from "../Control/ControlTravelEdit";
 import ControlTravelBagEdit from "../Control/ControlTravelBagEdit";
 
 interface DataItem {
+  timing: string;
+  FullName: string;
   firstname: string;
   lastname: string;
   selectedState: string;

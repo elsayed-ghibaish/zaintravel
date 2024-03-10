@@ -21,8 +21,8 @@ export default async function EditBooking({ params }:any) {
 
   const { id }:any = params;
   const { booking } = await getBookingById(id);
-  const { FullName, Phone, BookingDay, TypeOfTrip, Endlectures, selectedCity, selectedArea, paymentType,  }:any = booking;
+  const { FullName, Phone, BookingDay, TypeOfTrip, Endlectures, selectedCity, selectedArea, timing, paymentType,  }:any = booking;
 
   return <EditBookingForm id={id} FullName={FullName} Phone={Phone} BookingDay={BookingDay}
-  TypeOfTrip={TypeOfTrip} Endlectures={Endlectures} selectedCity={selectedCity} selectedArea={selectedArea} paymentType={paymentType} />;
+  TypeOfTrip={TypeOfTrip} Endlectures={Endlectures} selectedCity={selectedCity} selectedArea={selectedArea} timing={timing} paymentType={paymentType} />;
 }

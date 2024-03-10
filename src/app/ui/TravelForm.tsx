@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import {
   city,
   area,
+  atime,
   TypeOfTripSel,
   PaymentSel,
   vodafoneIfo,
+  EndlecturesTime,
 } from "@/app/api/regionApi";
 import { format, addDays, eachDayOfInterval, isBefore, getDay } from "date-fns";
 import { ar } from "date-fns/locale";
@@ -18,6 +20,7 @@ export default function TravelForm() {
   const [Endlectures, setEndlectures] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedArea, setSelectedArea] = useState("");
+  const [timing, setTiming] = useState("");
   const [paymentType, setPaymentType] = useState("");
   const [success, setSuccess] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
@@ -65,6 +68,10 @@ export default function TravelForm() {
     setSelectedArea(event.target.value);
   };
 
+  const handleTimeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setTiming(event.target.value);
+  };
+
   // إنشاء قائمة بالأيام المتاحة
   const inputStartDate = new Date(BookingStartDate); // قم بتعديل هذا التاريخ حسب رغبتك
   const inputEndDate = addDays(inputStartDate, BookingDays); // قم بتعديل هذا التاريخ حسب رغبتك
@@ -88,6 +95,33 @@ export default function TravelForm() {
       label: format(day, "EEEE, d MMMM yyyy", { locale: ar }),
     }));
 
+  // ارسال الرسائل عبر SMS
+
+  // const sendSMS = async (data: any) => {
+  //   try {
+  //     const smsMisrUsername =
+  //       "2e8420f7816c7f717c17bb0dd5a417d60ea643667fe3260f75686e48d4d7d9b0";
+  //     const smsMisrPassword =
+  //       "9c1b4e3ab64f1a2d4b3bada5d7c8bd1b6adce5d3700e61b53a20056c64068ef5";
+  //     const smsMisrSenderName =
+  //       "b611afb996655a94c8e942a823f1421de42bf8335d24ba1f84c437b2ab11ca27";
+
+  //     const message = `تم حجز رحلة جديدة
+  //         تاريخ الرحلة: ${data.BookingDay}
+  //       `;
+
+  //     const url = `https://smsmisr.com/api/SMS/?environment=1&username=${smsMisrUsername}&password=${smsMisrPassword}&language=2&sender=${smsMisrSenderName}
+  //     &mobile=2${data.Phone}&message=${encodeURIComponent(message)}`;
+
+  //     await fetch(url, {
+  //       method: "POST",
+  //     });
+  //   } catch (error) {
+  //     console.error("Failed to send SMS:", error);
+  //     throw error;
+  //   }
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -106,6 +140,7 @@ export default function TravelForm() {
       Endlectures,
       selectedCity,
       selectedArea,
+      timing,
       paymentType,
       datesend: new Date(),
       confirmation: "NotActivate",
@@ -113,6 +148,9 @@ export default function TravelForm() {
 
     try {
       await sendTelegramMessage(dataToSend);
+      // ارسال الرسائل عبر SMS
+
+      // await sendSMS(dataToSend);
       const response = await fetch("/api/booking", {
         method: "POST",
         headers: {
@@ -130,6 +168,7 @@ export default function TravelForm() {
       setEndlectures("");
       setSelectedCity("");
       setSelectedArea("");
+      setTiming("");
       setPaymentType("");
       setSuccess(true);
     } catch (error) {
@@ -153,6 +192,7 @@ export default function TravelForm() {
         موعد نهاية المحاضرة: ${data.Endlectures}
         المنطقة: ${data.selectedCity}
         ${data.selectedArea ? `نقطة التحرك: ${data.selectedArea}` : ""}
+        توقيت التحرك : ${data.timing}
         الدفع : ${data.paymentType}
       `;
 
@@ -334,10 +374,11 @@ export default function TravelForm() {
                   <option value="" disabled hidden>
                     اختر
                   </option>
-                  <option value="04:30">04:30</option>
-                  <option value="03:00">03:00</option>
-                  <option value="02:00">02:00</option>
-                  <option value="قبل كدة">قبل كدة</option>
+                  {EndlecturesTime.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
+                  ))}
                 </select>
               </div>
             )}
@@ -398,8 +439,36 @@ export default function TravelForm() {
               </>
             )}
           </div>
-        </div>
 
+          {selectedCity && selectedArea && (
+            <>
+              <div className="sm:col-span-3 mt-5">
+                <label
+                  htmlFor="timing"
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  التوقيت
+                </label>
+                <select
+                  name="timing"
+                  id="timing"
+                  className="block w-full rounded-md border-0 py-2 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+        focus:ring-2 focus:ring-inset focus:ring-red-600 focus:outline-red-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-2"
+                  value={timing}
+                  onChange={(e) => setTiming(e.target.value)}
+                  required
+                >
+                  <option value=""></option>
+                  {atime[selectedArea].map((item, index) => (
+                    <option key={index} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+        </div>
         <div className="sm:col-span-2 mt-5">
           <label
             htmlFor="PaymentType"

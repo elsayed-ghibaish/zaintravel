@@ -12,6 +12,7 @@ export async function PUT(request: any, { params }: any) {
     newEndlectures: Endlectures,
     newselectedCity: selectedCity,
     newselectedArea: selectedArea,
+    newtiming: timing,
     newpaymentType: paymentType,
     newconfirmation: confirmation,
   } = await request.json();
@@ -24,6 +25,7 @@ export async function PUT(request: any, { params }: any) {
     Endlectures,
     selectedCity,
     selectedArea,
+    timing,
     paymentType,
     confirmation,
   });
