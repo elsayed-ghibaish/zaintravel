@@ -404,16 +404,16 @@ export default function TravelForm() {
                 <option value=""></option>
                 {city.map((country, index) => {
                   // إذا كانت الدولة المحددة هي الدولة التي تريد إخفاء الخيارات لها وإضافة خيارات جديدة
-                  // if (TypeOfTrip === "عودة") {
-                  //   if (country === "الحسينية" || country === "أبو حماد") {
-                  //     return null; // لا تعرض هذه الخيارات
-                  //   }
-                  // }
-                  // if (TypeOfTrip === "ذهاب" || TypeOfTrip === "ذهاب وعودة") {
-                  //   if (country === "كوبرى القصاصين") {
-                  //     return null; // لا تعرض هذه الخيارات
-                  //   }
-                  // }
+                  if (TypeOfTrip === "عودة") {
+                    if (country === "الحسينية" || country === "أبو حماد") {
+                      return null; // لا تعرض هذه الخيارات
+                    }
+                  }
+                  if (TypeOfTrip === "ذهاب" || TypeOfTrip === "ذهاب وعودة") {
+                    if (country === "كوبرى القصاصين") {
+                      return null; // لا تعرض هذه الخيارات
+                    }
+                  }
 
                   // إذا لم تكن الدولة المحددة هي الدولة التي تريد إخفاء الخيارات لها
                   return (
