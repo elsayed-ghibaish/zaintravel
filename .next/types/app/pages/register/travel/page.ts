@@ -1,4 +1,4 @@
-// File: C:\Users\elsay\OneDrive\سطح المكتب\zain-travel\src\app\pages\register\travel\page.tsx
+// File: C:\Users\elsay\Desktop\6- الاصدار السادس\zain-travel\src\app\pages\register\travel\page.tsx
 import * as entry from '../../../../../../src/app/pages/register/travel/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

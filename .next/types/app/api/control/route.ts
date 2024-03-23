@@ -1,4 +1,4 @@
-// File: C:\Users\elsay\OneDrive\سطح المكتب\zain-travel\src\app\api\control\route.tsx
+// File: C:\Users\elsay\Desktop\6- الاصدار السادس\zain-travel\src\app\api\control\route.tsx
 import * as entry from '../../../../../src/app/api/control/route.js'
 import type { NextRequest } from 'next/server.js'
 
